@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">History Quiz</string>
+
+
+    <string name="question1">Soldiers from India would have most likely fought in WWI against</string>
+    <string name="question1_radio_A">the French</string>
+    <string name="question1_radio_B">the British</string> <!--good-->
+    <string name="question1_radio_C">Russians</string>
+    <string name="question1_radio_D">Germans</string>
+
+
+    <string name="question2">What historical events below happens in 1914 ?</string>
+    <string name="question2_chkbox_A">World War I begins</string>
+    <string name="question2_chkbox_B">Panama Canal Officially Opens after 10 years of construction</string>
+    <string name="question2_chkbox_C">Franklin D Roosevelt became president of the U.S</string>
+
+    <string name="question3">Which year that the U.S declare independent ?</string>
+    <string name="question3_text_answer">1776</string>
+    <string name="question3_text_hint">E.g: 1996,2015</string>
+
+    <string name="question4">Which state was the first ever SuperBowl (SuperBowl I) hosted ?</string>
+    <string name="question4_text_answer">California</string>
+    <string name="question4_text_hint">(State full name. E.g: Oregon, North Carolina)</string>
+
+    <string name="submit_txt">SUBMIT</string>
+    <string name="reset_txt">RESET</string>
+
+    <string name="congrats_txt">Congratulations !!! You have answered all the question CORRECTLY
+    </string>
+</resources>
