@@ -27,4 +27,6 @@
 
     <string name="congrats_txt">Congratulations !!! You have answered all the question CORRECTLY
     </string>
+
+    <string name="partial_correct_text">You only get %d correct answer</string>
 </resources>

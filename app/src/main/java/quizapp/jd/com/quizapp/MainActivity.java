@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
 
     private static final String TAG = "QUIZZAPP";
+    private static final int TOTAL_QUESTION = 4;
 
     // QUESTION  1 radios...
     RadioButton question1A;
@@ -65,8 +66,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     @Override
     public void onClick(View view) {
 
-        switch(view.getId())
-        {
+        switch (view.getId()) {
             case R.id.submit_btn:
                 checkAllAnswers();
                 break;
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 resetAllAnswers();
                 break;
             default:
-                Log.d(TAG,"Should not get here. Strange Error");
+                Log.d(TAG, "Should not get here. Strange Error");
         }
 
     }
@@ -82,48 +82,60 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     /**
      * verify that the answer is correct for each question
      */
-    private void checkAllAnswers()
-    {
-            // show answer also
-            boolean resQ1 = verifyQuestion1();
-            boolean resQ2 = verifyQuestion2();
-            boolean resQ3 = verifyEditTextQuestion(question3Text,
-                    getString(R.string.question3_text_answer));
-            boolean resQ4 =  verifyEditTextQuestion(question4Text,
-                    getString(R.string.question4_text_answer));
+    private void checkAllAnswers() {
+        // show answer also
+        boolean resQ1 = verifyQuestion1();
+        boolean resQ2 = verifyQuestion2();
+        boolean resQ3 = verifyEditTextQuestion(question3Text,
+                getString(R.string.question3_text_answer));
+        boolean resQ4 = verifyEditTextQuestion(question4Text,
+                getString(R.string.question4_text_answer));
+        int correctCount = 0;
 
-            if (!resQ1)
-            {
-                //question1RadioGroup.clearCheck();
-                question1B.setBackgroundColor(
-                        ContextCompat.getColor(this,R.color.colorCorrectAnswer));
-            }
+        // check each question
+        if (!resQ1) {
 
-            if (!resQ2)
-            {
-                question2B.setBackgroundColor(
-                        ContextCompat.getColor(this,R.color.colorCorrectAnswer));
-                question2A.setBackgroundColor(
-                        ContextCompat.getColor(this,R.color.colorCorrectAnswer));
+            question1B.setBackgroundColor(
+                    ContextCompat.getColor(this, R.color.colorCorrectAnswer));
+        } else {
+            correctCount++;
+        }
 
-            }
+        if (!resQ2) {
+            question2B.setBackgroundColor(
+                    ContextCompat.getColor(this, R.color.colorCorrectAnswer));
+            question2A.setBackgroundColor(
+                    ContextCompat.getColor(this, R.color.colorCorrectAnswer));
 
-            if (!resQ3)
-            {
-                question3Text.setText(getString(R.string.question3_text_answer));
-                question3Text.setTextColor(ContextCompat.getColor(this,R.color.colorCorrectAnswer));
-            }
+        } else {
+            correctCount++;
+        }
 
-            if (!resQ4)
-            {
-                question4Text.setText(getString(R.string.question4_text_answer));
-                question4Text.setTextColor(ContextCompat.getColor(this,R.color.colorCorrectAnswer));
-            }
+        if (!resQ3) {
+            question3Text.setText(getString(R.string.question3_text_answer));
+            question3Text.setTextColor(ContextCompat.getColor(this, R.color.colorCorrectAnswer));
+        } else {
+            correctCount++;
+        }
 
-           if (resQ1 && resQ2 && resQ3 && resQ4)
-           {
-               Toast.makeText(this, getString(R.string.congrats_txt), Toast.LENGTH_LONG).show();
-           }
+        if (!resQ4) {
+            question4Text.setText(getString(R.string.question4_text_answer));
+            question4Text.setTextColor(ContextCompat.getColor(this, R.color.colorCorrectAnswer));
+        }
+        else
+        {
+            correctCount++;
+        }
+
+        if (correctCount == TOTAL_QUESTION) {
+            Toast.makeText(this, getString(R.string.congrats_txt), Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            String msg = String.format(getString(R.string.partial_correct_text),correctCount);
+
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -131,27 +143,23 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     /**
      * @return true if and only if B is selected
      */
-    private boolean verifyQuestion1()
-    {
+    private boolean verifyQuestion1() {
         return (question1B.isChecked());
     }
 
     /**
      * @return true if and only if A and B selected and C not selected
      */
-    private boolean verifyQuestion2()
-    {
+    private boolean verifyQuestion2() {
         return (question2A.isChecked() && question2B.isChecked() && (!question2C.isChecked()));
     }
 
 
     /**
-     *
      * @return true if and only if the string match with the answer string
      * from the string resources file
      */
-    private boolean verifyEditTextQuestion(EditText textView, String answer)
-    {
+    private boolean verifyEditTextQuestion(EditText textView, String answer) {
         String str_answer = textView.getText().toString();
         if (str_answer == null)
             return false;
@@ -161,12 +169,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     }
 
 
-
     /**
      * uncheck all radio buttons and check box as well as clearing text answer
      */
-    private void resetAllAnswers()
-    {
+    private void resetAllAnswers() {
         question1RadioGroup.clearCheck();
         question1B.setBackgroundColor(Color.TRANSPARENT);
 
