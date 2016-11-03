@@ -121,18 +121,14 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         if (!resQ4) {
             question4Text.setText(getString(R.string.question4_text_answer));
             question4Text.setTextColor(ContextCompat.getColor(this, R.color.colorCorrectAnswer));
-        }
-        else
-        {
+        } else {
             correctCount++;
         }
 
         if (correctCount == TOTAL_QUESTION) {
             Toast.makeText(this, getString(R.string.congrats_txt), Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            String msg = String.format(getString(R.string.partial_correct_text),correctCount);
+        } else {
+            String msg = String.format(getString(R.string.partial_correct_text), correctCount);
 
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
         }
@@ -189,8 +185,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         question4Text.setText("");
         question4Text.clearFocus();
         question4Text.setHint(getString(R.string.question4_text_hint));
-
-
     }
 
 
